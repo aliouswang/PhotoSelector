@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@android:color/holo_blue_light"
+    android:layout_height="45dp">
+
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:text="标题"
+        style="@style/tv_large_white"
+        android:layout_centerInParent="true"
+        android:maxLength="12"
+        />
+
+</RelativeLayout>

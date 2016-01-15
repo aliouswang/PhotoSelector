@@ -12,6 +12,8 @@ public class DiskPhoto extends Photo{
     public String thumb_path;
     public String image_path;
 
+    public boolean thumbEmpty;
+
     @Override
     public String getImage() {
         if (!TextUtils.isEmpty(image_path)) {

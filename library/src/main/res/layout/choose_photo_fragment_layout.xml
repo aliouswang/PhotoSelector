@@ -1,5 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@android:color/white"
     android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <GridView
+        android:id="@+id/gv_photos"
+        android:layout_above="@+id/bottom_filter"
+        android:layout_below="@+id/title_rootview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@android:color/transparent"
+        android:gravity="center"
+        android:horizontalSpacing="3dp"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="3"
+        android:padding="3dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="3dp" >
+    </GridView>
+
+    <View
+        android:id="@+id/filter_master_view"
+        android:layout_above="@+id/bottom_filter"
+        android:layout_below="@+id/title_rootview"
+        android:background="#B0000000"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ListView
+        android:id="@+id/list_filter"
+        android:background="@android:color/white"
+        android:overScrollMode="never"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <RelativeLayout
+        android:id="@+id/bottom_filter"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:background="#CCCCCC"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/tv_filter"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:text="全部"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:src="@drawable/ic_photo_folder_bottom"
+            android:layout_alignBottom="@+id/tv_filter"
+            android:layout_alignRight="@+id/tv_filter"
+            android:layout_width="15dp"
+            android:layout_height="15dp" />
+    </RelativeLayout>
+
+    <include
+        android:layout_marginTop="45dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/common_loading_layout"/>
+
+    <include
+        android:id="@+id/title_rootview"
+        layout="@layout/common_title_layout"
+        />
 
 </RelativeLayout>
