@@ -14,10 +14,11 @@
 
     <ImageView
         android:id="@+id/img_select"
-        android:src="@drawable/picture_unselected"
+        android:src="@drawable/pic_choose"
+        android:background="@drawable/pic_choose__bg"
         android:padding="5dp"
         android:layout_alignParentRight="true"
-        android:layout_width="42dp"
-        android:layout_height="42dp" />
+        android:layout_width="32dp"
+        android:layout_height="32dp" />
 
 </RelativeLayout>

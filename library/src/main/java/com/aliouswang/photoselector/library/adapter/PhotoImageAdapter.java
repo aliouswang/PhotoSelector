@@ -52,21 +52,21 @@ public class PhotoImageAdapter extends AdapterEnhancedBase<DiskPhoto>{
             public void onClick(View v) {
                 if (seleteImages.contains(photo)) {
                     seleteImages.remove(photo);
-                    helper.setImageResId(R.id.img_select, R.drawable.picture_unselected);
+                    helper.setImageResId(R.id.img_select, R.drawable.transparent_bg);
                     draweeView.setColorFilter(null);
                 }else {
                     if (seleteImages.size() >= MAX_SELECT_IMAGE_COUNT) return;
                     seleteImages.add(photo);
-                    helper.setImageResId(R.id.img_select, R.drawable.pictures_selected);
+                    helper.setImageResId(R.id.img_select, R.drawable.pic_choose);
                     draweeView.setColorFilter(Color.parseColor("#70000000"));
                 }
             }
         });
         if (seleteImages.contains(photo)) {
-            helper.setImageResId(R.id.img_select, R.drawable.pictures_selected);
+            helper.setImageResId(R.id.img_select, R.drawable.pic_choose);
             draweeView.setColorFilter(Color.parseColor("#70000000"));
         }else {
-            helper.setImageResId(R.id.img_select, R.drawable.picture_unselected);
+            helper.setImageResId(R.id.img_select, R.drawable.transparent_bg);
             draweeView.setColorFilter(null);
         }
     }

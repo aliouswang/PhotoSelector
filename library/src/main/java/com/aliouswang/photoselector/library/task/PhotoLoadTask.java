@@ -206,6 +206,7 @@ public class PhotoLoadTask {
     public void cancelTask() {
         if (subscription != null && !subscription.isUnsubscribed()) {
             subscription.unsubscribe();
+            subscription = null;
         }
     }
 
