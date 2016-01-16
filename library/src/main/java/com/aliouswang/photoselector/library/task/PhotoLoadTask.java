@@ -54,7 +54,7 @@ public class PhotoLoadTask {
     }
 
     public PhotoLoadTask beginTask() {
-        if (subscription == null) {
+        if (subscription == null || subscription.isUnsubscribed()) {
             if (loadListener != null) {
                 loadListener.preLoad();
             }

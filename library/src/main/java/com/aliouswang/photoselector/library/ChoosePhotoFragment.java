@@ -91,8 +91,9 @@ public class ChoosePhotoFragment extends Fragment{
 
     }
 
+    private PhotoLoadTask mPhotoLoadTask;
     public void accessData() {
-        PhotoLoadTask.getInstance(getContext())
+        mPhotoLoadTask = PhotoLoadTask.getInstance(getContext())
                 .setLoadListener(new PhotoLoadListener() {
                     @Override
                     public void preLoad() {
@@ -223,5 +224,13 @@ public class ChoosePhotoFragment extends Fragment{
                 "alpha", 1, 0);
         alphaAnimator.setDuration(duration);
         alphaAnimator.start();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mPhotoLoadTask != null) {
+            mPhotoLoadTask.cancelTask();
+        }
     }
 }
