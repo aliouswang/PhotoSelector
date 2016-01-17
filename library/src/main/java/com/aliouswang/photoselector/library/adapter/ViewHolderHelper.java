@@ -1,6 +1,7 @@
 package com.aliouswang.photoselector.library.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -126,6 +127,12 @@ public class ViewHolderHelper {
     public ViewHolderHelper setImageResId(int viewId, int resId){
         ImageView imageView = retrieveView(viewId);
         imageView.setImageResource(resId);
+        return this;
+    }
+
+    public ViewHolderHelper setImageResDrawable(int viewId, Drawable drawable){
+        ImageView imageView = retrieveView(viewId);
+        imageView.setImageDrawable(drawable);
         return this;
     }
 

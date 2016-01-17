@@ -2,6 +2,7 @@ package com.aliouswang.photoselector.library.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -52,7 +53,8 @@ public class PhotoImageAdapter extends AdapterEnhancedBase<DiskPhoto>{
             public void onClick(View v) {
                 if (seleteImages.contains(photo)) {
                     seleteImages.remove(photo);
-                    helper.setImageResId(R.id.img_select, R.drawable.transparent_bg);
+                    helper.setImageResDrawable(R.id.img_select,
+                            new ColorDrawable(mContext.getResources().getColor(android.R.color.transparent)));
                     draweeView.setColorFilter(null);
                 }else {
                     if (seleteImages.size() >= MAX_SELECT_IMAGE_COUNT) return;
@@ -66,7 +68,8 @@ public class PhotoImageAdapter extends AdapterEnhancedBase<DiskPhoto>{
             helper.setImageResId(R.id.img_select, R.drawable.pic_choose);
             draweeView.setColorFilter(Color.parseColor("#70000000"));
         }else {
-            helper.setImageResId(R.id.img_select, R.drawable.transparent_bg);
+            helper.setImageResDrawable(R.id.img_select,
+                    new ColorDrawable(mContext.getResources().getColor(android.R.color.transparent)));
             draweeView.setColorFilter(null);
         }
     }
