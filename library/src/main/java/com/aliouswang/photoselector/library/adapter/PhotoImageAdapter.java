@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.aliouswang.photoselector.library.R;
+import com.aliouswang.photoselector.library.listener.OnPhotoSelectChanged;
 import com.aliouswang.photoselector.library.model.DiskPhoto;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -24,6 +25,8 @@ public class PhotoImageAdapter extends AdapterEnhancedBase<DiskPhoto>{
 
     public ArrayList<DiskPhoto> thumbPhotos;
 
+    private OnPhotoSelectChanged mPhotoSelectChanged;
+
     public ArrayList<DiskPhoto> getSeleteImages() {
         return seleteImages;
     }
@@ -40,6 +43,10 @@ public class PhotoImageAdapter extends AdapterEnhancedBase<DiskPhoto>{
 
     public PhotoImageAdapter(Context context, int[] layoutResArrays, List<DiskPhoto> data) {
         super(context, layoutResArrays, data);
+    }
+
+    public void setOnPhotoSelectChanged(OnPhotoSelectChanged listener) {
+        this.mPhotoSelectChanged = listener;
     }
 
     @Override
@@ -61,6 +68,9 @@ public class PhotoImageAdapter extends AdapterEnhancedBase<DiskPhoto>{
                     seleteImages.add(photo);
                     helper.setImageResId(R.id.img_select, R.drawable.pic_choose);
                     draweeView.setColorFilter(Color.parseColor("#70000000"));
+                }
+                if (mPhotoSelectChanged != null) {
+                    mPhotoSelectChanged.onPhotoChanged();
                 }
             }
         });

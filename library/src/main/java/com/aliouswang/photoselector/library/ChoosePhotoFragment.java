@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 
 import com.aliouswang.photoselector.library.adapter.PhotoFilterAdapter;
 import com.aliouswang.photoselector.library.adapter.PhotoImageAdapter;
+import com.aliouswang.photoselector.library.listener.OnPhotoSelectChanged;
 import com.aliouswang.photoselector.library.model.PhotoLoadResult;
 import com.aliouswang.photoselector.library.task.PhotoLoadListener;
 import com.aliouswang.photoselector.library.task.PhotoLoadTask;
@@ -40,6 +42,7 @@ public class ChoosePhotoFragment extends Fragment{
     private GridView mPhotoGridView;
     private PhotoImageAdapter mPhotoImageAdapter;
     private View mMaskerView;
+    private Button mConfirmButton;
 
     private PhotoLoadResult mPhotoLoadResult;
 
@@ -54,6 +57,7 @@ public class ChoosePhotoFragment extends Fragment{
     }
 
     public void initView() {
+        mConfirmButton = (Button)mRootView.findViewById(R.id.btn_confirm);
         mFilterTextView = (TextView) mRootView.findViewById(R.id.tv_filter);
         mFilterTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,8 +77,8 @@ public class ChoosePhotoFragment extends Fragment{
     private void calculateFilterHeight() {
         int count = mPhotoFilterAdapter.getCount();
         int totalCellHeight = (int) (count * ScreenUtils.dpToPx(getContext(), 110));
-        int topMargin = (int) ScreenUtils.dpToPx(getContext(), 130);
-        int extraHeight = topMargin + (int) ScreenUtils.dpToPx(getContext(), 50) ;
+        int topMargin = (int) ScreenUtils.dpToPx(getContext(), 120);
+        int extraHeight = topMargin + (int) ScreenUtils.dpToPx(getContext(), 42) ;
         int screenHeight = ScreenUtils.getScreenHeight(getContext());
         int aviableHeight = screenHeight - extraHeight;
         if (totalCellHeight < aviableHeight) {
@@ -86,6 +90,7 @@ public class ChoosePhotoFragment extends Fragment{
         RelativeLayout.LayoutParams rlp = (RelativeLayout.LayoutParams)
                 mFilterListView.getLayoutParams();
         rlp.topMargin = topMargin;
+        rlp.bottomMargin = (int) ScreenUtils.dpToPx(getContext(), 42) ;
         mFilterListView.setLayoutParams(rlp);
 
 
@@ -141,6 +146,21 @@ public class ChoosePhotoFragment extends Fragment{
         mPhotoImageAdapter = new PhotoImageAdapter(getContext(),
                 new int [] {R.layout.grid_image_layout});
         mPhotoGridView.setAdapter(mPhotoImageAdapter);
+        mPhotoImageAdapter.setOnPhotoSelectChanged(new OnPhotoSelectChanged() {
+            @Override
+            public void onPhotoChanged() {
+                int selectImages = mPhotoImageAdapter.getSeleteImages().size();
+                if (selectImages <= 0) {
+                    mConfirmButton.setEnabled(false);
+                    mConfirmButton.setText("完成");
+                    mConfirmButton.setBackgroundResource(R.drawable.dark_green_btn_bg);
+                }else {
+                    mConfirmButton.setEnabled(true);
+                    mConfirmButton.setText("完成(" + selectImages + "/9)");
+                    mConfirmButton.setBackgroundResource(R.drawable.green_btn_selector);
+                }
+            }
+        });
         mMaskerView = mRootView.findViewById(R.id.filter_master_view);
         mMaskerView.setOnClickListener(new View.OnClickListener() {
             @Override
