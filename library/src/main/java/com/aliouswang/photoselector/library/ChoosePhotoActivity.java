@@ -54,6 +54,7 @@ public class ChoosePhotoActivity extends FragmentActivity{
         mChoosePhotoFragment = new ChoosePhotoFragment();
         if (mDiskPhotos != null && !mDiskPhotos.isEmpty()) {
             mChoosePhotoFragment.setSelectPhotos(mDiskPhotos);
+            setConfirmButtonState(mDiskPhotos.size());
         }
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.content, mChoosePhotoFragment);
@@ -62,18 +63,22 @@ public class ChoosePhotoActivity extends FragmentActivity{
         mChoosePhotoFragment.setOnPhotoSelectChanged(new OnPhotoSelectChanged() {
             @Override
             public void onPhotoChanged(int curSize) {
-                if (curSize <= 0) {
-                    mConfirmButton.setEnabled(false);
-                    mConfirmButton.setClickable(false);
-                    mConfirmButton.setText("完成");
-                    mConfirmButton.setBackgroundResource(R.drawable.dark_green_btn_bg);
-                }else {
-                    mConfirmButton.setEnabled(true);
-                    mConfirmButton.setClickable(true);
-                    mConfirmButton.setText("完成(" + curSize + "/9)");
-                    mConfirmButton.setBackgroundResource(R.drawable.green_btn_selector);
-                }
+                setConfirmButtonState(curSize);
             }
         });
+    }
+
+    private void setConfirmButtonState(int curSize) {
+        if (curSize <= 0) {
+            mConfirmButton.setEnabled(false);
+            mConfirmButton.setClickable(false);
+            mConfirmButton.setText("完成");
+            mConfirmButton.setBackgroundResource(R.drawable.dark_green_btn_bg);
+        }else {
+            mConfirmButton.setEnabled(true);
+            mConfirmButton.setClickable(true);
+            mConfirmButton.setText("完成(" + curSize + "/9)");
+            mConfirmButton.setBackgroundResource(R.drawable.green_btn_selector);
+        }
     }
 }
