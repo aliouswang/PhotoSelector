@@ -64,10 +64,12 @@ public class ChoosePhotoActivity extends FragmentActivity{
             public void onPhotoChanged(int curSize) {
                 if (curSize <= 0) {
                     mConfirmButton.setEnabled(false);
+                    mConfirmButton.setClickable(false);
                     mConfirmButton.setText("完成");
                     mConfirmButton.setBackgroundResource(R.drawable.dark_green_btn_bg);
                 }else {
                     mConfirmButton.setEnabled(true);
+                    mConfirmButton.setClickable(true);
                     mConfirmButton.setText("完成(" + curSize + "/9)");
                     mConfirmButton.setBackgroundResource(R.drawable.green_btn_selector);
                 }
