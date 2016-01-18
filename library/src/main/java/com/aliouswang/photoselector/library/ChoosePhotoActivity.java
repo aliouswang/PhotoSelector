@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
 import android.widget.Button;
 
 import com.aliouswang.photoselector.library.listener.OnPhotoSelectChanged;
@@ -33,10 +34,21 @@ public class ChoosePhotoActivity extends FragmentActivity{
         Intent intent = getIntent();
         if (intent != null) {
             mDiskPhotos =
-                    (ArrayList<DiskPhoto>) intent.getSerializableExtra("CHOOSE_PHOTO_INTENT_FLAG");
+                    (ArrayList<DiskPhoto>) intent.getSerializableExtra(CHOOSE_PHOTO_INTENT_FLAG);
         }
 
         mConfirmButton = (Button) findViewById(R.id.btn_confirm);
+        mConfirmButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                ArrayList<DiskPhoto> selectedPhotos = mChoosePhotoFragment.getSelectPhotos();
+                Intent intent = getIntent();
+                intent.putExtra(CHOOSE_PHOTO_INTENT_FLAG, selectedPhotos);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        });
 
         FragmentManager manager = getSupportFragmentManager();
         mChoosePhotoFragment = new ChoosePhotoFragment();

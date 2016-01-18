@@ -55,6 +55,10 @@ public class ChoosePhotoFragment extends Fragment{
         this.mSelectPhotos = photos;
     }
 
+    public ArrayList<DiskPhoto> getSelectPhotos() {
+        return this.mPhotoImageAdapter.getSeleteImages();
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater,
