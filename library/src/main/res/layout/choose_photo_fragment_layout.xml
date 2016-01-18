@@ -69,9 +69,6 @@
         android:layout_height="match_parent"
         layout="@layout/common_loading_layout"/>
 
-    <include
-        android:id="@+id/title_rootview"
-        layout="@layout/common_title_layout"
-        />
+
 
 </RelativeLayout>

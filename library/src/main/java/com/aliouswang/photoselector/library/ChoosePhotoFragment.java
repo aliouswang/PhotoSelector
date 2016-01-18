@@ -19,10 +19,13 @@ import android.widget.TextView;
 import com.aliouswang.photoselector.library.adapter.PhotoFilterAdapter;
 import com.aliouswang.photoselector.library.adapter.PhotoImageAdapter;
 import com.aliouswang.photoselector.library.listener.OnPhotoSelectChanged;
+import com.aliouswang.photoselector.library.model.DiskPhoto;
 import com.aliouswang.photoselector.library.model.PhotoLoadResult;
 import com.aliouswang.photoselector.library.task.PhotoLoadListener;
 import com.aliouswang.photoselector.library.task.PhotoLoadTask;
 import com.aliouswang.photoselector.library.utils.ScreenUtils;
+
+import java.util.ArrayList;
 
 /**
  * Created by aliouswang on 16/1/15.
@@ -45,6 +48,12 @@ public class ChoosePhotoFragment extends Fragment{
     private Button mConfirmButton;
 
     private PhotoLoadResult mPhotoLoadResult;
+
+    private ArrayList<DiskPhoto> mSelectPhotos;
+
+    public void setSelectPhotos(ArrayList<DiskPhoto> photos) {
+        this.mSelectPhotos = photos;
+    }
 
     @Nullable
     @Override
@@ -139,26 +148,25 @@ public class ChoosePhotoFragment extends Fragment{
         });
     }
 
+    OnPhotoSelectChanged onPhotoSelectChanged;
+    public void setOnPhotoSelectChanged(OnPhotoSelectChanged photoSelectChanged) {
+        this.onPhotoSelectChanged = photoSelectChanged;
+    }
+
     private void initPhotoGridView() {
         mPhotoGridView = (GridView) mRootView.findViewById(R.id.gv_photos);
-        mPhotoImageAdapter = new PhotoImageAdapter(getContext(),
-                new int [] {R.layout.grid_image_layout});
+        if (this.mSelectPhotos != null && !this.mSelectPhotos.isEmpty()) {
+            mPhotoImageAdapter = new PhotoImageAdapter(getContext(),
+                    new int [] {R.layout.grid_image_layout});
+            mPhotoImageAdapter.setSeleteImages(this.mSelectPhotos);
+        }else {
+            mPhotoImageAdapter = new PhotoImageAdapter(getContext(),
+                    new int [] {R.layout.grid_image_layout});
+        }
+
         mPhotoGridView.setAdapter(mPhotoImageAdapter);
-        mPhotoImageAdapter.setOnPhotoSelectChanged(new OnPhotoSelectChanged() {
-            @Override
-            public void onPhotoChanged() {
-                int selectImages = mPhotoImageAdapter.getSeleteImages().size();
-                if (selectImages <= 0) {
-                    mConfirmButton.setEnabled(false);
-                    mConfirmButton.setText("完成");
-                    mConfirmButton.setBackgroundResource(R.drawable.dark_green_btn_bg);
-                }else {
-                    mConfirmButton.setEnabled(true);
-                    mConfirmButton.setText("完成(" + selectImages + "/9)");
-                    mConfirmButton.setBackgroundResource(R.drawable.green_btn_selector);
-                }
-            }
-        });
+        mPhotoImageAdapter.setOnPhotoSelectChanged(onPhotoSelectChanged);
+
         mMaskerView = mRootView.findViewById(R.id.filter_master_view);
         mMaskerView.setOnClickListener(new View.OnClickListener() {
             @Override

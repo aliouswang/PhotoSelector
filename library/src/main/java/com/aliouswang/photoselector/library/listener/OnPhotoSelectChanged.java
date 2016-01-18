@@ -5,6 +5,6 @@ package com.aliouswang.photoselector.library.listener;
  */
 public interface OnPhotoSelectChanged {
 
-    void onPhotoChanged();
+    void onPhotoChanged(int curSize);
 
 }

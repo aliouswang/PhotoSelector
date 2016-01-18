@@ -70,7 +70,7 @@ public class PhotoImageAdapter extends AdapterEnhancedBase<DiskPhoto>{
                     draweeView.setColorFilter(Color.parseColor("#70000000"));
                 }
                 if (mPhotoSelectChanged != null) {
-                    mPhotoSelectChanged.onPhotoChanged();
+                    mPhotoSelectChanged.onPhotoChanged(seleteImages.size());
                 }
             }
         });
