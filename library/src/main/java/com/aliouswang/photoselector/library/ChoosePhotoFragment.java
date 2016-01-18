@@ -77,8 +77,8 @@ public class ChoosePhotoFragment extends Fragment{
     private void calculateFilterHeight() {
         int count = mPhotoFilterAdapter.getCount();
         int totalCellHeight = (int) (count * ScreenUtils.dpToPx(getContext(), 110));
-        int topMargin = (int) ScreenUtils.dpToPx(getContext(), 120);
-        int extraHeight = topMargin + (int) ScreenUtils.dpToPx(getContext(), 42) ;
+        int topMargin = (int) ScreenUtils.dpToPx(getContext(), 130);
+        int extraHeight = topMargin + (int) ScreenUtils.dpToPx(getContext(), 50) ;
         int screenHeight = ScreenUtils.getScreenHeight(getContext());
         int aviableHeight = screenHeight - extraHeight;
         if (totalCellHeight < aviableHeight) {
@@ -90,9 +90,7 @@ public class ChoosePhotoFragment extends Fragment{
         RelativeLayout.LayoutParams rlp = (RelativeLayout.LayoutParams)
                 mFilterListView.getLayoutParams();
         rlp.topMargin = topMargin;
-        rlp.bottomMargin = (int) ScreenUtils.dpToPx(getContext(), 42) ;
         mFilterListView.setLayoutParams(rlp);
-
 
     }
 

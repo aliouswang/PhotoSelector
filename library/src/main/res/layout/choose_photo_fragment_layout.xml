@@ -31,17 +31,16 @@
         android:id="@+id/list_filter"
         android:background="@android:color/white"
         android:overScrollMode="never"
-        android:layout_marginBottom="42dp"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/bottom_filter"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"/>
 
     <RelativeLayout
         android:id="@+id/bottom_filter"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:background="#808080"
-        android:layout_height="42dp">
+        android:layout_height="50dp">
 
         <TextView
             android:id="@+id/tv_filter"
