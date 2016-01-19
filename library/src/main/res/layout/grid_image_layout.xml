@@ -7,7 +7,7 @@
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/imageview"
         fresco:placeholderImage="@drawable/default_img_bg"
-        fresco:actualImageScaleType="fitXY"
+        fresco:actualImageScaleType="focusCrop"
         fresco:placeholderImageScaleType="fitXY"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
