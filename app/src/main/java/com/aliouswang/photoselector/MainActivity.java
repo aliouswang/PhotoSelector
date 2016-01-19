@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 
-import com.aliouswang.photoselector.library.ChoosePhotoActivity;
+import com.aliouswang.photoselector.library.activity.ChoosePhotoActivity;
 import com.aliouswang.photoselector.library.model.DiskPhoto;
 
 import java.util.ArrayList;

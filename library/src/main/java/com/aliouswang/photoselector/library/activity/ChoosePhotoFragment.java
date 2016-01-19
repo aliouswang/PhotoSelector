@@ -1,4 +1,4 @@
-package com.aliouswang.photoselector.library;
+package com.aliouswang.photoselector.library.activity;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.aliouswang.photoselector.library.R;
 import com.aliouswang.photoselector.library.adapter.PhotoFilterAdapter;
 import com.aliouswang.photoselector.library.adapter.PhotoImageAdapter;
 import com.aliouswang.photoselector.library.listener.OnPhotoSelectChanged;

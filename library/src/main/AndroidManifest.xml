@@ -5,7 +5,13 @@
         android:supportsRtl="true">
 
         <activity
-            android:name="com.aliouswang.photoselector.library.ChoosePhotoActivity"/>
+            android:name=".activity.ChoosePhotoActivity"
+            android:screenOrientation="portrait"
+            />
+        
+        <activity android:name=".activity.PreviewPhotoActivity"
+            android:screenOrientation="portrait"
+            />
     </application>
 
 
