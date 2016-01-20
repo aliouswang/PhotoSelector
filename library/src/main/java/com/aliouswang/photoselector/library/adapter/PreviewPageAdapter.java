@@ -15,6 +15,7 @@ public class PreviewPageAdapter extends PagerAdapter{
 
     public void setViewList(ArrayList<View> viewList) {
         this.mViewList = viewList;
+        notifyDataSetChanged();
     }
 
     @Override
