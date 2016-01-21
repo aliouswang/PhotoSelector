@@ -2,6 +2,7 @@ package com.aliouswang.photoselector.library.activity;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -47,6 +48,7 @@ public class ChoosePhotoFragment extends Fragment{
     private PhotoImageAdapter mPhotoImageAdapter;
     private View mMaskerView;
     private Button mConfirmButton;
+    private TextView mPreviewTv;
 
     private PhotoLoadResult mPhotoLoadResult;
 
@@ -82,6 +84,16 @@ public class ChoosePhotoFragment extends Fragment{
                 }else {
                     showFilter(DEFAULT_ANIM_DURATION);
                 }
+            }
+        });
+        mPreviewTv = (TextView) mRootView.findViewById(R.id.tv_preview);
+        mPreviewTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), PreviewPhotoActivity.class);
+                intent.putExtra(ChoosePhotoActivity.CHOOSE_PHOTO_INTENT_FLAG,
+                        getSelectPhotos());
+                startActivity(intent);
             }
         });
         initFilterListView();

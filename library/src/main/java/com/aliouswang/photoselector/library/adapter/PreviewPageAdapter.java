@@ -35,7 +35,8 @@ public class PreviewPageAdapter extends PagerAdapter{
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        container.addView(mViewList.get(position));
+        container.addView(mViewList.get(position), ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
         return mViewList.get(position);
     }
 }

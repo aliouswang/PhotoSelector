@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.aliouswang.photoselector.library.R;
 import com.aliouswang.photoselector.library.adapter.PreviewPageAdapter;
@@ -14,6 +13,8 @@ import com.aliouswang.photoselector.library.model.DiskPhoto;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+
+import uk.co.senab.photoview.PhotoView;
 
 /**
  * Created by Administrator on 2016/1/19 0019.
@@ -53,8 +54,8 @@ public class PreviewPhotoActivity extends Activity{
         for(DiskPhoto photo : mSelectedPhoto) {
             View view = inflater.inflate(R.layout.preview_photo_layout, null);
             viewList.add(view);
-            ImageView imageView = (ImageView) view.findViewById(R.id.img_photo);
-            Glide.with(this).load(photo.getImage()).into(imageView);
+            PhotoView imageView = (PhotoView) view.findViewById(R.id.img_photo);
+            Glide.with(this).load("file\\" + photo.getImage()).into(imageView);
         }
         mPageAdaper.setViewList(viewList);
     }
