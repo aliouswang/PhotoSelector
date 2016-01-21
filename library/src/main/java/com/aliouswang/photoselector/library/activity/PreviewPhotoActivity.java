@@ -55,7 +55,7 @@ public class PreviewPhotoActivity extends Activity{
             View view = inflater.inflate(R.layout.preview_photo_layout, null);
             viewList.add(view);
             PhotoView imageView = (PhotoView) view.findViewById(R.id.img_photo);
-            Glide.with(this).load("file\\" + photo.getImage()).into(imageView);
+            Glide.with(this).load(photo.getImage()).into(imageView);
         }
         mPageAdaper.setViewList(viewList);
     }
