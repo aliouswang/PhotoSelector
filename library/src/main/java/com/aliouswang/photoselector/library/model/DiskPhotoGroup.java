@@ -1,7 +1,5 @@
 package com.aliouswang.photoselector.library.model;
 
-import android.text.TextUtils;
-
 import java.util.ArrayList;
 
 /**
@@ -26,11 +24,11 @@ public class DiskPhotoGroup {
      */
     public String getFirstImgPath() {
         if (photos.size() > 0) {
-            String result = photos.get(0).image_path;
-            if (TextUtils.isEmpty(result)) {
-                result = photos.get(0).image_path;
-            }
-            return result;
+//            String result = photos.get(0).image_path;
+//            if (TextUtils.isEmpty(result)) {
+//                result = photos.get(0).getThumbImage();
+//            }
+            return photos.get(0).getThumbImage();
         }
         return "";
     }
